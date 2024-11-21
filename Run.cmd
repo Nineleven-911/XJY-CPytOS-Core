@@ -1,1 +1,0 @@
-"D:\PycharmProjects\XJY-DOS Windows Ver\.venv\Scripts\python.exe" "D:\PycharmProjects\XJY-DOS Windows Ver\Source Files\Alpha 0.02.0 Remake\main.py"
