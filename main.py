@@ -46,8 +46,13 @@ while 1:
     try:
         command = input(" >>>")
         # Split command
-        command_case = command[:command.find("(")]
-        command_parameters: list = command[command.find("(") + 1:command.find(")")].split(",")
+        command_case = "NaS"
+        command_parameters = []
+        if "(" not in command and ")" not in command:
+            command_case = command
+        else:
+            command_case = command[:command.find("(")]
+            command_parameters: list = command[command.find("(") + 1:command.find(")")].split(",")
 
         # Judge 判断指令
 
@@ -66,7 +71,7 @@ while 1:
             # OS Basic Commands 基础命令(操作系统底层命令)
             case "version":
                 system.information.information_info("Config information:", os_ver, " System information: \
-XJY-CPython Operating System Core <0.01.0> Build 00101.03067.19377.11001")
+XJY-CPython Operating System Core <0.01.0> \nOS Version: Alpha Build 00101.03067.19377.11001")
             case "exit":
                 system.information.information_info("You can close the Operating-System now.")
                 break
