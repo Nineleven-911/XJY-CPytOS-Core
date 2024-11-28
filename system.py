@@ -1,25 +1,28 @@
 import base64
 import json
 import time
+
 import colorama
 
 
 class consts:
-    OS_ICON = \
-        r""" __  __      _  __   __           ____   ____     ___    ____       ____                       
+    OS_ICON = r""" __  __      _  __   __           ____   ____     ___    ____       ____                       
  \ \/ /     | | \ \ / /          / ___| |  _ \   / _ \  / ___|     / ___|   ___    _ __    ___ 
   \  /   _  | |  \ V /   _____  | |     | |_) | | | | | \___ \    | |      / _ \  | '__|  / _ \
   /  \  | |_| |   | |   |_____| | |___  |  __/  | |_| |  ___) |   | |___  | (_) | | |    |  __/
  /_/\_\  \___/    |_|            \____| |_|      \___/  |____/     \____|  \___/  |_|     \___|"""
 
-    NEW_OS_ICON_0_04_0 = \
-        r"""___  _    _ ___  _       ____  ____  ____  ____    ____  ____  ____  _____
+    NEW_OS_ICON_0_04_0 = r"""___  _    _ ___  _       ____  ____  ____  ____    ____  ____  ____  _____
 \  \//   / |\  \//      /   _\/  __\/  _ \/ ___\  /   _\/  _ \/  __\/  __/
  \  /    | | \  / _____ |  /  |  \/|| / \||    \  |  /  | / \||  \/||  \
  /  \ /\_| | / /  \____\|  \__|  __/| \_/|\___ |  |  \__| \_/||    /|  /_
 /__/\\\____//_/         \____/\_/   \____/\____/  \____/\____/\_/\_\\____\ """
 
-    TIPS = ["Try command 'HELLO_WORLD'!", "If you like this, try Professional version of XJY-CPytOS!"]
+    TIPS = ["Try command 'HELLO_WORLD'!", "If you like this, try Professional version of XJY-CPytOS!", "Ooh~Everybody \
+is Kong Fu fighting~", "Welcome to my world~ renew your definition~", "Chinese catchphrase: Dead pigs are not afraid \
+of boiling water's hot!", "Do you know Python is different of any programming languages?", "Say \"Hello, World!\" to \
+programming languages!", "The shirt costs 9 pound 15 pence!", "Steven He: EMOTIONAL DAMAGE!?", "Click here to add text\
+s...", ""]
 
     COMMAND_HELLO_WORLD_STRINGS = r"""Traceback (most recent call last):
     File "D:\helloworld.py", line 1, in <module>
@@ -81,7 +84,15 @@ def read_config():
     return users, py_os_core_ver
 
 
-class information:
+def write_log(*value, is_new=False):
+    with open("runtime.log", "a") as file:
+        for text in value:
+            txt = f"[{time.strftime("%Y-%m-%d-%H:%M:%S", time.localtime())}] "
+            file.write(txt+str(text) if not is_new else "-"*10+" "+txt+"-"*10)
+            file.write("\n")
+
+
+class info:
     @staticmethod
     def error_info(*values, sep: str = " ", end: str = "\n"):
         for i in values:
@@ -95,7 +106,7 @@ class information:
         print(colorama.Fore.RESET, end=end)
 
     @staticmethod
-    def information_info(*values, sep: str = " ", end: str = "\n"):
+    def normal_info(*values, sep: str = " ", end: str = "\n"):
         print(colorama.Fore.RESET, end="")
         for i in values:
             print(i, end=sep)

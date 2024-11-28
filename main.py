@@ -5,14 +5,15 @@ import pathlib
 import time
 import colorama
 import random
+import tqdm
 # import pwinput
 
 import system
 
 # Init 初始化部分
+system.write_log(None, is_new=True)
 
 # Initiation for Nuitka (为Nuitka的初始化，因为Nuitka的处理逻辑是: 不用到，不打包)
-
 colorama.init()
 os.system("cls" if os.name == "nt" else "clear")
 usr, os_ver = system.read_config()
@@ -21,8 +22,10 @@ print(
 [Development Version]: Build in XJY-CPython Operating System Core Version <0.01.0>
 {system.consts.OS_ICON}
 """)
-system.information.information_info("[OS]: Need login(Catch exception) - [xjy.os.status.exception.need_login]")
+system.info.normal_info("[OS]: Need login(Catch exception) - [xjy.os.status.exception.NeedLoginException]")
+
 # Initiation ends
+
 # Login 登录账户部分
 
 print("Login: \nGuest account name: guest, password: PWD\nAccounts:")
@@ -31,17 +34,19 @@ for i in usr.items():
 while 1:
     acc_name = input("\nAccount name: ")
     if acc_name not in usr.keys():
-        system.information.warning_info("Invalid account name.")
+        system.info.warning_info("Invalid account name.")
         continue
     pwd = input("Password:")
     if usr[acc_name] != pwd:
-        system.information.warning_info("Invalid account password, password:", pwd)
+        system.info.warning_info("Invalid account password, password:", pwd)
         continue
-    system.information.information_info("Welcome!", acc_name)
+    os.system("cls" if os.name == "nt" else "clear")
+    system.info.normal_info(system.consts.OS_ICON, "\n" + "-" * 30 + "\n")
+    system.info.normal_info("Welcome!", acc_name)
     break
 
 # Main Loop 主循环
-system.information.information_info("[OS]:Login status TRUE, Accepted Login.")
+system.info.normal_info("[OS]:Login status TRUE, Accepted Login.")
 while 1:
     try:
         command = input(" >>>")
@@ -70,19 +75,20 @@ while 1:
         match command_case:
             # OS Basic Commands 基础命令(操作系统底层命令)
             case "version":
-                system.information.information_info("Config information:", os_ver, " System information: \
+                system.info.normal_info("Config info:", os_ver, " System info: \
 XJY-CPython Operating System Core <0.01.0> \nOS Version: Alpha Build 00101.03067.19377.11001")
             case "exit":
-                system.information.information_info("You can close the Operating-System now.")
+                system.info.normal_info("You can close the Operating-System now.")
                 break
             case "tips":
-                system.information.information_info(random.choice(system.consts.TIPS))
-                raise IOError
+                system.info.normal_info(random.choice(system.consts.TIPS))
+
             case "HELLO_WORLD":
-                system.information.error_info(system.consts.COMMAND_HELLO_WORLD_STRINGS)
+                system.info.error_info(system.consts.COMMAND_HELLO_WORLD_STRINGS)
 
             case _:
-                raise system.MethodError(f"There's no method called \"" + command_case + "\"")
+                raise system.MethodError(f"There's no method called \"{command_case if command_case != "" else "'NaS(\
+Not a Statement)'"}\"")
 
     except Exception as error:
-        print("Catch Runtime Error:", error)
+        system.info.error_info("Catch Runtime Error:", str(error))

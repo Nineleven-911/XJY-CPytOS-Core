@@ -1,7 +1,7 @@
 {
   "__comments__": [
     "py_osc_v == Python Operating System Core Version",
-    "Password is decrypted by Unicode+Base64"
+    "Password is encrypted by Unicode+Base64"
   ],
   "py_osc_v": "XJY-CPython Operating System Core Version <0.01.0>",
   "user": {
