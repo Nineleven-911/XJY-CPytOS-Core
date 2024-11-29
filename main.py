@@ -5,13 +5,23 @@ import pathlib
 import time
 import colorama
 import random
-import tqdm
+
+from datetime import datetime
+
+# import tqdm
 # import pwinput
 
 import system
+import functions as func
 
 # Init 初始化部分
 system.write_log(None, is_new=True)
+
+# Variables
+
+is_login = False
+
+# Variables Defining Ends
 
 # Initiation for Nuitka (为Nuitka的初始化，因为Nuitka的处理逻辑是: 不用到，不打包)
 colorama.init()
@@ -28,25 +38,10 @@ system.info.normal_info("[OS]: Need login(Catch exception) - [xjy.os.status.exce
 
 # Login 登录账户部分
 
-print("Login: \nGuest account name: guest, password: PWD\nAccounts:")
-for i in usr.items():
-    print(i[0], end=" ")
-while 1:
-    acc_name = input("\nAccount name: ")
-    if acc_name not in usr.keys():
-        system.info.warning_info("Invalid account name.")
-        continue
-    pwd = input("Password:")
-    if usr[acc_name] != pwd:
-        system.info.warning_info("Invalid account password, password:", pwd)
-        continue
-    os.system("cls" if os.name == "nt" else "clear")
-    system.info.normal_info(system.consts.OS_ICON, "\n" + "-" * 30 + "\n")
-    system.info.normal_info("Welcome!", acc_name)
-    break
+account_logged_in = func.user.login(usr)
 
 # Main Loop 主循环
-system.info.normal_info("[OS]:Login status TRUE, Accepted Login.")
+
 while 1:
     try:
         command = input(" >>>")
@@ -86,9 +81,43 @@ XJY-CPython Operating System Core <0.01.0> \nOS Version: Alpha Build 00101.03067
             case "HELLO_WORLD":
                 system.info.error_info(system.consts.COMMAND_HELLO_WORLD_STRINGS)
 
+            # User Commands 用户命令
+            case "relogin":
+                system.info.normal_info("Login status be turned to: non_login")
+                account_logged_in = func.user.login(usr)
+
+            # Applications Commands 软件命令
+            case "apps_list":
+                print(f"----------Directory of \"{os.getcwd()+"\\Program Files (p3.12)"}\"----------")
+                for file_name in os.listdir(os.getcwd()+"\\Program Files (p3.12)"):
+                    file_loc = os.getcwd() + "\\Program Files (p3.12)\\" + file_name
+                    file_last_write_date = datetime.fromtimestamp(os.stat(file_loc).st_mtime)
+                    print(f"<{file_last_write_date}> {file_name} <xOS Application>")
+
+            case "run":
+                system.require_args(1, command_parameters)
+                app_name = command_parameters[0]
+                if app_name not in os.listdir(os.getcwd()+"\\Program Files (p3.12)\\"):
+                    raise FileNotFoundError(f"Can't find an application called \"{app_name}\"")
+                elif account_logged_in == "guest":
+                    raise PermissionError("Have no enough permissions")
+                os.system(f"python \"{os.getcwd()+"\\Program Files (p3.12)\\"+app_name}\"")
+
+            # Storage Commands 存储空间命令
+
+            # Special Commands 特殊命令
+            case "is_admin":
+                if account_logged_in == "guest":
+                    raise PermissionError("Have no enough permissions")
+                system.info.normal_info("You are administrator!")
+
             case _:
                 raise system.MethodError(f"There's no method called \"{command_case if command_case != "" else "'NaS(\
 Not a Statement)'"}\"")
 
+        system.write_log(f"Use command: \"{command_case}\", args: \"{command_parameters}\"")
+
     except Exception as error:
+        system.write_log(f"Use command failed: \"{command_case}\", args: \"{command_parameters}\", cause \
+by \"{error}\"")
         system.info.error_info("Catch Runtime Error:", str(error))

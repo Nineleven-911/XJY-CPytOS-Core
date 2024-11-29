@@ -22,7 +22,7 @@ class consts:
 is Kong Fu fighting~", "Welcome to my world~ renew your definition~", "Chinese catchphrase: Dead pigs are not afraid \
 of boiling water's hot!", "Do you know Python is different of any programming languages?", "Say \"Hello, World!\" to \
 programming languages!", "The shirt costs 9 pound 15 pence!", "Steven He: EMOTIONAL DAMAGE!?", "Click here to add text\
-s...", ""]
+s...", "", "Something wrong...", "Trans_back (more recent cell lost): ("]
 
     COMMAND_HELLO_WORLD_STRINGS = r"""Traceback (most recent call last):
     File "D:\helloworld.py", line 1, in <module>
@@ -53,6 +53,11 @@ class MethodError(Exception):
         pass
 
 
+class ParametersNotFoundError(Exception):
+    def __init__(self, texts):
+        pass
+
+
 # Class Defining Ends
 
 
@@ -62,6 +67,13 @@ def b64dec(text: str):
 
 def b64enc(text: str):
     return str(base64.b64encode(eval(f"b'{text}'")))[2:-1]
+
+
+def require_args(nums: int, args: list):
+    if len(args) != nums:
+        raise ParametersNotFoundError(f"Parameters requires: {nums}, found: {len(args)}")
+    else:
+        return 0
 
 
 def read_config():
@@ -88,7 +100,7 @@ def write_log(*value, is_new=False):
     with open("runtime.log", "a") as file:
         for text in value:
             txt = f"[{time.strftime("%Y-%m-%d-%H:%M:%S", time.localtime())}] "
-            file.write(txt+str(text) if not is_new else "-"*10+" "+txt+"-"*10)
+            file.write(txt + str(text) if not is_new else "-" * 10 + " " + txt + "-" * 10)
             file.write("\n")
 
 
