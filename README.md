@@ -75,7 +75,7 @@ XJY （fake）的操作系统核心和演示（Operating System Core and Demos�
 git克隆https://github.com/Nineleven-911/XJY-CPytOS-Core.git
 ```
 
-3. **运行demo **：进入项目目录，使用Python运行demo：
+3. **运行demo**：进入项目目录，使用Python运行demo：
 
 文档
 嗯…有人能帮我写吗？
