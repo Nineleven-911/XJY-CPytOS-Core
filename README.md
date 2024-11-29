@@ -61,7 +61,9 @@ XJY （fake）的操作系统核心和演示（Operating System Core and Demos�
 ## 特性
 
 -核心操作系统功能模拟
+
 -理解操作系统内部原理的教育性演示
+
 -模块化设计易于扩展和定制
 
 ## 入门
@@ -72,7 +74,7 @@ XJY （fake）的操作系统核心和演示（Operating System Core and Demos�
 2. **安装**：将仓库克隆到本地：
 
 ```bash
-git克隆https://github.com/Nineleven-911/XJY-CPytOS-Core.git
+git clone https://github.com/Nineleven-911/XJY-CPytOS-Core.git
 ```
 
 3. **运行demo**：进入项目目录，使用Python运行demo：
