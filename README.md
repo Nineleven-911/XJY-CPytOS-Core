@@ -25,14 +25,19 @@ git clone https://github.com/Nineleven-911/XJY-CPytOS-Core.git
 
 Documentation
 Emm... Somebody can help me to write?
+
 Contributing
 We welcome contributions to XJY-CPytOS-Core.    Please read CONTRIBUTING.   md for details on our code of conduct and the process for submitting pull requests.
+
 Versioning
 We use SemVer for versioning.    For the versions available, see the tags on this repository.
+
 Authors
 The original work was done by XJY, and the project is maintained by the community.    See the list of contributors who participated in this project.
+
 License
 This project is for education for kids!   Absolutely < Public Domain >!
+
 Acknowledgments
 •  Hat tip to anyone who's code was used
 •  Inspiration, code snippets, etc.
@@ -49,11 +54,11 @@ For any questions or suggestions, please reach out to us at <mc.20121112.bd@outl
 
 # XJY-CPytOS-Core
 
-# #概述
+## 概述
 
 XJY （fake）的操作系统核心和演示（Operating System Core and Demos）是一个旨在演示操作系统核心组件和功能的项目。这是一个学习项目，不应该用于任何实际应用程序。
 
-# #特性
+## 特性
 
 -核心操作系统功能模拟
 -理解操作系统内部原理的教育性演示
@@ -74,14 +79,19 @@ git克隆https://github.com/Nineleven-911/XJY-CPytOS-Core.git
 
 文档
 嗯…有人能帮我写吗？
+
 贡献
 我们欢迎对XJY-CPytOS-Core的贡献。请阅读投稿。Md了解我们的行为准则和提交pull request的过程的详细信息。
+
 版本控制
 我们使用SemVer进行版本控制。有关可用的版本，请参阅此存储库上的标记。
+
 作者
 最初的工作由XJY完成，项目由社区维护。查看参与此项目的贡献者列表。
+
 许可证
 这个项目是为了孩子的教育！绝对是公开的！（雾
+
 致谢
 向代码被使用的人致敬
 灵感、代码片段等；
