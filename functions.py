@@ -1,4 +1,7 @@
+# -*- coding: utf-8 -*-
+
 import os
+
 import system
 
 
@@ -15,7 +18,7 @@ class user:
                 system.write_log(f"Login failed. Input account name: \"{acc_name}\"")
                 continue
             pwd = input("Password:")
-            if usr[acc_name] != pwd:
+            if usr[acc_name][0] != pwd:
                 system.info.warning_info("Invalid account password, password:", pwd)
                 system.write_log(f"Login failed. Input password: \"{pwd}\"")
                 continue
